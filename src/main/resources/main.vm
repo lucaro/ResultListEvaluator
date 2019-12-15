@@ -1,0 +1,40 @@
+<html>
+<head>
+    <title>$title</title>
+</head>
+<body>
+<center>
+#if($ids)
+
+    <video width="320" height="240" controls>
+        <source src="$queryId" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <form action="#" method="post">
+    <table>
+        #foreach($id in $ids)
+        <tr>
+            <td>
+                <video width="320" height="240" controls>
+                    <source src="$id" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </td>
+            <td>
+                #foreach($option in $options)
+                <input type="radio" name="$id" value="$option.A"> $option.B
+                #end
+            </td>
+        </tr>
+        #end
+
+    </table>
+    <input type="submit" name="submit" value="submit">
+</form>
+#else
+No more entries
+#end
+</center>
+</body>
+</html>
