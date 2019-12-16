@@ -10,6 +10,7 @@ import java.io.File
 
 object Main {
 
+    private lateinit var replyManager: ReplyManager
 
     @JvmStatic
     fun main(args: Array<String>) {
@@ -29,15 +30,22 @@ object Main {
         javalin.get("/", mainpage)
         javalin.post("/", mainpage)
 
+        val queryManager = QueryManager(File("query"))
+        replyManager = ReplyManager(queryManager, File("reply"))
+
     }
 
     private val mainpage = Handler { ctx ->
         val id = ctx.req.session.id
 
         if (ctx.req.method == "POST"){
-            ctx.formParamMap().forEach { (t, u) ->
-                println("$t -> $u")
+            val queryId = ctx.formParamMap()["queryId"]?.first()
+
+            if(queryId != null){
+                val results = ctx.formParamMap().filter { it.key != "submit" && it.key != "queryId" && it.value.isNotEmpty() }.map { it.key to it.value.first() }.toMap()
+                replyManager.storeEvaluatedResults(id, queryId, results)
             }
+
         }
 
         val model = prepareResultList(id)
@@ -58,8 +66,12 @@ object Main {
     private fun prepareResultList(sessionId: String): MutableMap<String, Any> { //TODO
         val map = mutableMapOf<String, Any>()
 
-        map["queryId"] = "testVideo.mp4"
-        map["ids"] = listOf("testVideo.mp4", "second", "third")
+        val list = replyManager.getNextListToEvaluate(sessionId)
+
+        if(list.isNotEmpty()){
+            map["queryId"] = list.first().first
+        }
+        map["ids"] = list.map { it.second }
 
         return map
 

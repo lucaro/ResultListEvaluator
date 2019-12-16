@@ -12,6 +12,7 @@
     </video>
 
     <form action="#" method="post">
+    <input type="hidden" name="queryId" value="$queryId">
     <table>
         #foreach($id in $ids)
         <tr>

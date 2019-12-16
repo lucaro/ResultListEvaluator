@@ -149,3 +149,5 @@ gradle-app.setting
 
 /session-store/
 *.mp4
+/query/
+/reply/
