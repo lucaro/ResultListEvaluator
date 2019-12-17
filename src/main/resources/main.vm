@@ -3,13 +3,17 @@
     <title>$title</title>
 </head>
 <body>
-<center>
+<div style="text-align: center;">
 #if($ids)
+
+    <h3>Compare this video...</h3>
 
     <video width="320" height="240" controls>
         <source src="$queryId" type="video/mp4">
         Your browser does not support the video tag.
     </video>
+
+    <h3>...with the ones on this list and rate their similarity.</h3>
 
     <form action="#" method="post">
     <input type="hidden" name="queryId" value="$queryId">
@@ -36,6 +40,6 @@
 #else
 No more entries
 #end
-</center>
+</div>
 </body>
 </html>

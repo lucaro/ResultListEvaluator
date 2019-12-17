@@ -50,7 +50,11 @@ object Main {
 
         val model = prepareResultList(id)
 
-        model["title"] = "Results for ${model["queryId"] ?: "???"}"
+        if (model["queryId"] != null){
+            model["title"] = "Results for ${model["queryId"]!!}"
+        } else {
+            model["title"] = "No more videos"
+        }
 
         model["options"] = listOf(
             mapOf("A" to 4, "B" to "very good"),
@@ -70,8 +74,8 @@ object Main {
 
         if(list.isNotEmpty()){
             map["queryId"] = list.first().first
+            map["ids"] = list.map { it.second }
         }
-        map["ids"] = list.map { it.second }
 
         return map
 
