@@ -67,14 +67,14 @@ object Main {
         ctx.render("main.vm", model)
     }
 
-    private fun prepareResultList(sessionId: String): MutableMap<String, Any> { //TODO
+    private fun prepareResultList(sessionId: String): MutableMap<String, Any> {
         val map = mutableMapOf<String, Any>()
 
         val list = replyManager.getNextListToEvaluate(sessionId)
 
         if(list.isNotEmpty()){
-            map["queryId"] = list.first().first
-            map["ids"] = list.map { it.second }
+            map["queryId"] = "${list.first().first}.avi"
+            map["ids"] = "${list.map { it.second }}.avi"
         }
 
         return map
