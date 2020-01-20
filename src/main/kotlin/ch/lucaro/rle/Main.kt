@@ -74,7 +74,7 @@ object Main {
 
         if(list.isNotEmpty()){
             map["queryId"] = "${list.first().first}.avi"
-            map["ids"] = "${list.map { it.second }}.avi"
+            map["ids"] = list.map { "${it.second}.avi" }
         }
 
         return map
