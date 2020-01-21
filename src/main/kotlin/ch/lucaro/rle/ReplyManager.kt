@@ -28,7 +28,7 @@ class ReplyManager (private val qm: QueryManager, private val baseDir: File) {
         val userDir = File(baseDir, userId).apply { mkdirs() }
         val replyFile = File(userDir, "$queryId.csv")
         replyFile.appendText(
-            evaluation.map { "${it.key},${it.value}\n" }.joinToString { it }
+            evaluation.map { "${it.key},${it.value}\n" }.joinToString (separator = "")
         )
 
     }

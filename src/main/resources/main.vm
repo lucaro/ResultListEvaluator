@@ -9,7 +9,7 @@
     <h3>Compare this video...</h3>
 
     <video width="320" height="240" controls>
-        <source src="$queryId" type="video/mp4">
+        <source src="${queryId}.avi" type="video/mp4">
         Your browser does not support the video tag.
     </video>
 
@@ -22,7 +22,7 @@
         <tr>
             <td>
                 <video width="320" height="240" controls>
-                    <source src="$id" type="video/mp4">
+                    <source src="${id}.avi" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             </td>

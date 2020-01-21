@@ -73,8 +73,8 @@ object Main {
         val list = replyManager.getNextListToEvaluate(sessionId)
 
         if(list.isNotEmpty()){
-            map["queryId"] = "${list.first().first}.avi"
-            map["ids"] = list.map { "${it.second}.avi" }
+            map["queryId"] = list.first().first
+            map["ids"] = list.map { it.second }
         }
 
         return map
