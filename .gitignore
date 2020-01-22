@@ -39,6 +39,9 @@
 # *.iml
 # *.ipr
 
+
+#Bulku vids
+video/
 # CMake
 cmake-build-*/
 

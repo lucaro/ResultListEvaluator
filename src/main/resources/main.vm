@@ -8,7 +8,7 @@
 
     <h3>Compare this video...</h3>
 
-    <video width="320" height="240" controls>
+    <video width="640" height="480" controls>
         <source src="${queryId}.avi" type="video/mp4">
         Your browser does not support the video tag.
     </video>
@@ -18,20 +18,27 @@
     <form action="#" method="post">
     <input type="hidden" name="queryId" value="$queryId">
     <table>
+        #set($cols=3)
+        #set($counter=0)
         #foreach($id in $ids)
-        <tr>
-            <td>
-                <video width="320" height="240" controls>
-                    <source src="${id}.avi" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </td>
-            <td>
-                #foreach($option in $options)
-                <input type="radio" name="$id" value="$option.A"> $option.B
-                #end
-            </td>
-        </tr>
+            #if($counter%$cols==0)
+                <tr>
+            #end
+                <td>
+                   <video width="320" height="240" controls>
+                       <source src="${id}.avi" type="video/mp4">
+                       Your browser does not support the video tag.
+                   </video>
+               </td>
+               <td>
+                   #foreach($option in $options)
+                   <input type="radio" name="$id" value="$option.A"> $option.B
+                   #end
+               </td>
+            #if($counter % $cols == $col - 1)
+                </tr>
+            #end
+            #set($counter = $counter + 1)
         #end
 
     </table>
